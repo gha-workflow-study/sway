@@ -429,6 +429,8 @@ jobs:
           tar -xvf fuel-core.tar.gz
           chmod +x fuel-core-${{ needs.get-fuel-core-version.outputs.fuel_core_version }}-x86_64-unknown-linux-gnu/fuel-core
           mv fuel-core-${{ needs.get-fuel-core-version.outputs.fuel_core_version }}-x86_64-unknown-linux-gnu/fuel-core /usr/local/bin/fuel-core
+      - name: Install forc-client for e2e tests
+        run: cargo install --git https://github.com/FuelLabs/forc forc-client --locked
       - name: Cargo Run E2E Tests (Fuel VM)
         run: |
           fuel-core run --db-type in-memory --debug &
