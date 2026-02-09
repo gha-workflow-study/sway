@@ -69,7 +69,6 @@ pub(crate) async fn deploy_contract(
 
     let mut cmd = Command::new("forc-deploy");
     cmd.arg("--path").arg(&path);
-    cmd.arg("--signing-key").arg(signing_key.to_string());
     cmd.arg("--default-salt");
     cmd.arg("--node-url").arg(NODE_URL);
 
@@ -80,7 +79,7 @@ pub(crate) async fn deploy_contract(
         cmd.arg("--locked");
     }
     if run_config.release {
-        cmd.arg("--release");
+        cmd.arg("--build-profile").arg("release");
     }
 
     // Add experimental flags
@@ -90,6 +89,8 @@ pub(crate) async fn deploy_contract(
     for no_exp in &run_config.experimental.no_experimental {
         cmd.arg("--no-experimental").arg(no_exp.name());
     }
+
+    cmd.arg(signing_key.to_string());
 
     let output = cmd
         .output()
@@ -155,7 +156,6 @@ pub(crate) async fn runs_on_node(
         let mut cmd = Command::new("forc-run");
         cmd.arg("--path").arg(&path);
         cmd.arg("--node-url").arg(NODE_URL);
-        cmd.arg("--signing-key").arg(signing_key.to_string());
 
         if run_config.locked {
             cmd.arg("--locked");
@@ -176,6 +176,9 @@ pub(crate) async fn runs_on_node(
         for no_exp in &run_config.experimental.no_experimental {
             cmd.arg("--no-experimental").arg(no_exp.name());
         }
+
+        // Positional arg must come last
+        cmd.arg(signing_key.to_string());
 
         let output = cmd
             .output()
