@@ -1337,7 +1337,7 @@ mcli $r0 i48                  ; clear memory [u8; 48], 48 bytes
 addi $r1 $$locbase i392       ; get offset to local __ptr [u8; 48]
 mcpi $r1 $r0 i48              ; copy memory
 addi $r4 $$locbase i392       ; get offset to local __ptr [u8; 48]
-move $r3 $zero                ; move parameter from branch to block argument
+movi $r3 i0                   ; move parameter from branch to block argument
 movi $r0 i2                   ; initialize constant into register
 lt   $r0 $r3 $r0
 jnzf $r0 $zero i15
@@ -1451,7 +1451,7 @@ mcpi $r0 $r1 i24              ; copy memory
 addi $r0 $$locbase i704       ; get offset to local __ptr { { ptr, u64, u64 } }
 addi $r1 $$locbase i824       ; get offset to local __ptr { { ptr, u64, u64 } }
 mcpi $r1 $r0 i24              ; copy memory
-move $r9 $zero                ; move parameter from branch to block argument
+movi $r9 i0                   ; move parameter from branch to block argument
 movi $r0 i2                   ; initialize constant into register
 lt   $r0 $r9 $r0
 jnzf $r0 $zero i21
@@ -1557,7 +1557,7 @@ addi $r1 $$locbase i800       ; get offset to local __ptr { { ptr, u64, u64 } }
 addi $r2 $$locbase i528       ; get offset to local __ptr { { ptr, u64, u64 } }
 mcpi $r2 $r1 i24              ; copy memory
 addi $r1 $$locbase i376       ; get offset to local __ptr { { ptr, u64, u64 } }
-move $$arg0 $one              ; [call]: pass argument 0
+movi $$arg0 i1                ; [call]: pass argument 0
 move $$arg1 $r2               ; [call]: pass argument 1
 move $$arg2 $r1               ; [call]: pass argument 2
 jal  $$reta $pc i148          ; [call]: call abi_encode_51
@@ -1582,7 +1582,7 @@ addi $r1 $$locbase i800       ; get offset to local __ptr { { ptr, u64, u64 } }
 addi $r2 $$locbase i480       ; get offset to local __ptr { { ptr, u64, u64 } }
 mcpi $r2 $r1 i24              ; copy memory
 addi $r1 $$locbase i328       ; get offset to local __ptr { { ptr, u64, u64 } }
-move $$arg0 $zero             ; [call]: pass argument 0
+movi $$arg0 i0                ; [call]: pass argument 0
 move $$arg1 $r2               ; [call]: pass argument 1
 move $$arg2 $r1               ; [call]: pass argument 2
 jal  $$reta $pc i123          ; [call]: call abi_encode_51
@@ -1816,7 +1816,7 @@ data_NonConfigurable_4 .word 18446744073709486084
 0x0000004c ADDI R17 R59 0x188                              ;; [80, 71, 177, 136]
 0x00000050 MCPI R17 $writable 0x30                         ;; [96, 69, 0, 48]
 0x00000054 ADDI R20 R59 0x188                              ;; [80, 83, 177, 136]
-0x00000058 MOVE R19 $zero                                  ;; [26, 76, 0, 0]
+0x00000058 MOVI R19 0x0                                    ;; [114, 76, 0, 0]
 0x0000005c MOVI $writable 0x2                              ;; [114, 64, 0, 2]
 0x00000060 LT $writable R19 $writable                      ;; [22, 65, 52, 0]
 0x00000064 JNZF $writable $zero 0xf                        ;; [118, 64, 0, 15]
@@ -1930,7 +1930,7 @@ data_NonConfigurable_4 .word 18446744073709486084
 0x00000214 ADDI $writable R59 0x2c0                        ;; [80, 67, 178, 192]
 0x00000218 ADDI R17 R59 0x338                              ;; [80, 71, 179, 56]
 0x0000021c MCPI R17 $writable 0x18                         ;; [96, 69, 0, 24]
-0x00000220 MOVE R25 $zero                                  ;; [26, 100, 0, 0]
+0x00000220 MOVI R25 0x0                                    ;; [114, 100, 0, 0]
 0x00000224 MOVI $writable 0x2                              ;; [114, 64, 0, 2]
 0x00000228 LT $writable R25 $writable                      ;; [22, 65, 148, 0]
 0x0000022c JNZF $writable $zero 0x15                       ;; [118, 64, 0, 21]
@@ -2036,7 +2036,7 @@ data_NonConfigurable_4 .word 18446744073709486084
 0x000003bc ADDI R18 R59 0x210                              ;; [80, 75, 178, 16]
 0x000003c0 MCPI R18 R17 0x18                               ;; [96, 73, 16, 24]
 0x000003c4 ADDI R17 R59 0x178                              ;; [80, 71, 177, 120]
-0x000003c8 MOVE R58 $one                                   ;; [26, 232, 16, 0]
+0x000003c8 MOVI R58 0x1                                    ;; [114, 232, 0, 1]
 0x000003cc MOVE R57 R18                                    ;; [26, 229, 32, 0]
 0x000003d0 MOVE R56 R17                                    ;; [26, 225, 16, 0]
 0x000003d4 JAL R62 $pc 0x94                                ;; [153, 248, 48, 148]
@@ -2061,7 +2061,7 @@ data_NonConfigurable_4 .word 18446744073709486084
 0x00000420 ADDI R18 R59 0x1e0                              ;; [80, 75, 177, 224]
 0x00000424 MCPI R18 R17 0x18                               ;; [96, 73, 16, 24]
 0x00000428 ADDI R17 R59 0x148                              ;; [80, 71, 177, 72]
-0x0000042c MOVE R58 $zero                                  ;; [26, 232, 0, 0]
+0x0000042c MOVI R58 0x0                                    ;; [114, 232, 0, 0]
 0x00000430 MOVE R57 R18                                    ;; [26, 229, 32, 0]
 0x00000434 MOVE R56 R17                                    ;; [26, 225, 16, 0]
 0x00000438 JAL R62 $pc 0x7b                                ;; [153, 248, 48, 123]
